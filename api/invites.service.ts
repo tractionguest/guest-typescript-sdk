@@ -18,7 +18,9 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
+import { BatchJobGuest } from '../model/batchJob';
 import { ErrorsListGuest } from '../model/errorsList';
+import { IdentifierListGuest } from '../model/identifierList';
 import { InviteCreateParamsGuest } from '../model/inviteCreateParams';
 import { InviteDetailGuest } from '../model/inviteDetail';
 import { InviteUpdateParamsGuest } from '../model/inviteUpdateParams';
@@ -62,6 +64,50 @@ export class InvitesService {
         return false;
     }
 
+
+    /**
+     * Delete Multiple Invites
+     * Queues up a \&quot;delete\&quot; background task for one or more &#x60;Invite&#x60; entities.
+     * @param identifierListGuest 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public batchDeleteInvites(identifierListGuest?: IdentifierListGuest, observe?: 'body', reportProgress?: boolean): Observable<BatchJobGuest>;
+    public batchDeleteInvites(identifierListGuest?: IdentifierListGuest, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<BatchJobGuest>>;
+    public batchDeleteInvites(identifierListGuest?: IdentifierListGuest, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<BatchJobGuest>>;
+    public batchDeleteInvites(identifierListGuest?: IdentifierListGuest, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+
+        let headers = this.defaultHeaders;
+
+        // authentication (TractionGuestAuth) required
+        // to determine the Accept header
+        const httpHeaderAccepts: string[] = [
+            'application/json'
+        ];
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected !== undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
+
+        return this.httpClient.post<BatchJobGuest>(`${this.configuration.basePath}/invites/batch_delete`,
+            identifierListGuest,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
 
     /**
      * Create an Invite

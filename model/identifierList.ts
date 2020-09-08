@@ -9,21 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { UserGuest } from './user';
 
 
-/**
- * The root of the BatchJob\'s schema.
- */
-export interface BatchJobGuest { 
-    bid?: string;
-    createdAt?: string;
-    status?: string;
-    totalRecords?: number;
-    workerName?: string;
-    user?: UserGuest;
-    pending?: number;
-    completed?: number;
-    failed?: number;
+export interface IdentifierListGuest { 
+    ids?: Array<string>;
 }
 
