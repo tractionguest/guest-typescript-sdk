@@ -38,5 +38,6 @@ export interface UserGuest {
      * Determines if the registration portal has been enabled for this account
      */
     registrationPortalEnabled: boolean;
+    accountUuid?: string;
 }
 
