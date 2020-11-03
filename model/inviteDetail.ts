@@ -46,6 +46,7 @@ export interface InviteDetailGuest {
     email: string;
     createdAt?: Date;
     company?: string;
+    onPremise?: boolean;
     groupVisit?: GroupVisitGuest;
 }
 export namespace InviteDetailGuest {
