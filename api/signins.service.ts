@@ -18,6 +18,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
+import { ErrorsListGuest } from '../model/errorsList';
 import { PaginatedSigninsListGuest } from '../model/paginatedSigninsList';
 import { SigninCreateParamsGuest } from '../model/signinCreateParams';
 import { SigninDetailGuest } from '../model/signinDetail';
@@ -33,7 +34,7 @@ import { Configuration }                                     from '../configurat
 })
 export class SigninsService {
 
-    protected basePath = 'https://tractionguest.ca/api/v3';
+    protected basePath = 'https://us.tractionguest.com/api/v3';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -66,7 +67,7 @@ export class SigninsService {
     /**
      * Create Signin
      * Creates a Signin
-     * @param signinCreateParamsGuest 
+     * @param signinCreateParamsGuest Params for creating a Signin can omit certain fields if a &#x60;registration_id&#x60; is present.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
@@ -243,14 +244,14 @@ export class SigninsService {
      * Update a Signin
      * Update, acknowledge, or &#x60;Signout&#x60; a &#x60;Signin&#x60;
      * @param signinId 
-     * @param signinUpdateParamsGuest 
+     * @param signinUpdateParamsGuest The only updatable values for a &#x60;Signin&#x60; are &#x60;badge_number&#x60;, &#x60;badge_returned&#x60;, &#x60;is_accounted_for&#x60;, &#x60;is_signed_out&#x60;, and &#x60;is_acknowledged&#x60;.  &#x60;is_signed_out&#x60; and &#x60;is_acknowledged&#x60; are pseudo attributes that once set to true, are irreversible.
      * @param idempotencyKey An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it\&#39;s submitted. We store idempotency keys for only 24 hours. Any &#x60;Idempotency-Key&#x60; shorter than 10 characters will be ignored
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updateSignin(signinId: string, signinUpdateParamsGuest: SigninUpdateParamsGuest, idempotencyKey?: string, observe?: 'body', reportProgress?: boolean): Observable<object>;
-    public updateSignin(signinId: string, signinUpdateParamsGuest: SigninUpdateParamsGuest, idempotencyKey?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<object>>;
-    public updateSignin(signinId: string, signinUpdateParamsGuest: SigninUpdateParamsGuest, idempotencyKey?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<object>>;
+    public updateSignin(signinId: string, signinUpdateParamsGuest: SigninUpdateParamsGuest, idempotencyKey?: string, observe?: 'body', reportProgress?: boolean): Observable<SigninDetailGuest>;
+    public updateSignin(signinId: string, signinUpdateParamsGuest: SigninUpdateParamsGuest, idempotencyKey?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<SigninDetailGuest>>;
+    public updateSignin(signinId: string, signinUpdateParamsGuest: SigninUpdateParamsGuest, idempotencyKey?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<SigninDetailGuest>>;
     public updateSignin(signinId: string, signinUpdateParamsGuest: SigninUpdateParamsGuest, idempotencyKey?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (signinId === null || signinId === undefined) {
             throw new Error('Required parameter signinId was null or undefined when calling updateSignin.');
@@ -283,7 +284,7 @@ export class SigninsService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.put<object>(`${this.configuration.basePath}/signins/${encodeURIComponent(String(signinId))}`,
+        return this.httpClient.put<SigninDetailGuest>(`${this.configuration.basePath}/signins/${encodeURIComponent(String(signinId))}`,
             signinUpdateParamsGuest,
             {
                 withCredentials: this.configuration.withCredentials,

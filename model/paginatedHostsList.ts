@@ -9,11 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { HostGuest } from './host';
 import { PaginationGuest } from './pagination';
 
 
 export interface PaginatedHostsListGuest { 
     pagination: PaginationGuest;
-    hosts: Array<object>;
+    hosts: Array<HostGuest>;
 }
 

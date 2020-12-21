@@ -9,10 +9,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { CustomFieldGuest } from './customField';
 
 
 export interface SigninDataGuest { 
-    customFields?: Array<object>;
+    customFields?: Array<CustomFieldGuest>;
     name?: string;
 }
 

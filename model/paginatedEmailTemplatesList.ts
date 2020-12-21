@@ -9,10 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { EmailTemplateGuest } from './emailTemplate';
+import { PaginationGuest } from './pagination';
 
 
 export interface PaginatedEmailTemplatesListGuest { 
-    pagination: object;
-    emailTemplates: Array<object>;
+    pagination: PaginationGuest;
+    emailTemplates: Array<EmailTemplateGuest>;
 }
 

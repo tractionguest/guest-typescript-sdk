@@ -11,6 +11,7 @@
  */
 import { GuestResponseGuest } from './guestResponse';
 import { InviteGuest } from './invite';
+import { SigninGuest } from './signin';
 import { VisitorGuest } from './visitor';
 
 
@@ -48,6 +49,6 @@ export interface RegistrationDetailGuest {
      * Datetime when registration was created
      */
     createdAt: Date;
-    signin?: object;
+    signin?: SigninGuest;
 }
 

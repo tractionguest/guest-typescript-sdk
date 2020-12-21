@@ -11,6 +11,9 @@
  */
 
 
+/**
+ * 
+ */
 export interface SigninCreateParamsGuest { 
     /**
      * UUID of a Registration

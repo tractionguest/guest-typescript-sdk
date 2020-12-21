@@ -9,6 +9,8 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { CustomFieldGuest } from './customField';
+import { NotificationTriggerCreateParamsGuest } from './notificationTriggerCreateParams';
 
 
 /**
@@ -16,10 +18,10 @@
  */
 export interface InviteCreateParamsGuest { 
     mobileNumber?: string;
-    notificationTriggers?: Array<object>;
+    notificationTriggers?: Array<NotificationTriggerCreateParamsGuest>;
     firstName: string;
     emailTemplateId?: number;
-    customFields?: Array<object>;
+    customFields?: Array<CustomFieldGuest>;
     hostIds?: Array<number>;
     watchlistColour?: InviteCreateParamsGuest.WatchlistColourGuestEnum;
     title?: string;

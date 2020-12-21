@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { PermissionGuest } from './permission';
+import { PermissionGroupGuest } from './permissionGroup';
 
 
 /**
@@ -21,8 +21,14 @@ export interface UserGuest {
      * Identifies if user has access to mobile app features.
      */
     mobileAccessEnabled: boolean;
-    permissionGroups?: Array<PermissionGuest>;
+    permissionGroups?: Array<PermissionGroupGuest>;
+    /**
+     * 
+     */
     email: string;
+    /**
+     * 
+     */
     lastName?: string;
     /**
      * Determines if the registration portal has been enabled for this account

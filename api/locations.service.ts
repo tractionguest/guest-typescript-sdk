@@ -18,6 +18,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
+import { ErrorsListGuest } from '../model/errorsList';
 import { LocationGuest } from '../model/location';
 import { PaginatedLocationsListGuest } from '../model/paginatedLocationsList';
 
@@ -30,7 +31,7 @@ import { Configuration }                                     from '../configurat
 })
 export class LocationsService {
 
-    protected basePath = 'https://tractionguest.ca/api/v3';
+    protected basePath = 'https://us.tractionguest.com/api/v3';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 

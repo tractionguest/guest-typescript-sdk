@@ -13,9 +13,18 @@ import { WatchlistMatchGuest } from './watchlistMatch';
 import { WatchlistSearchGuest } from './watchlistSearch';
 
 
+/**
+ * 
+ */
 export interface ExternalWatchlistResultGuest { 
     matches?: Array<WatchlistMatchGuest>;
+    /**
+     * 
+     */
     colour?: ExternalWatchlistResultGuest.ColourGuestEnum;
+    /**
+     * 
+     */
     integration?: string;
     searchTerms?: WatchlistSearchGuest;
 }

@@ -9,10 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { LocationGuest } from './location';
+import { PaginationGuest } from './pagination';
 
 
 export interface PaginatedLocationsListGuest { 
-    locations: Array<object>;
-    pagination: object;
+    locations: Array<LocationGuest>;
+    pagination: PaginationGuest;
 }
 

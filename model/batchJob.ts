@@ -9,14 +9,18 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { UserGuest } from './user';
 
 
+/**
+ * 
+ */
 export interface BatchJobGuest { 
     bid?: string;
     createdAt?: string;
     status?: string;
     totalRecords?: number;
     workerName?: string;
-    user?: object;
+    user?: UserGuest;
 }
 

@@ -9,10 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { PaginationGuest } from './pagination';
+import { SigninGuest } from './signin';
 
 
 export interface PaginatedSigninsListGuest { 
-    pagination: object;
-    signins: Array<object>;
+    pagination: PaginationGuest;
+    signins: Array<SigninGuest>;
 }
 

@@ -9,9 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { HostCreateParamsGuest } from './hostCreateParams';
 
 
 export interface HostBatchCreateParamsGuest { 
-    hosts?: Array<object>;
+    hosts?: Array<HostCreateParamsGuest>;
 }
 

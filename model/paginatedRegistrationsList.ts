@@ -9,10 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { PaginationGuest } from './pagination';
+import { RegistrationGuest } from './registration';
 
 
 export interface PaginatedRegistrationsListGuest { 
-    registrations?: Array<object>;
-    pagination?: object;
+    registrations?: Array<RegistrationGuest>;
+    pagination?: PaginationGuest;
 }
 

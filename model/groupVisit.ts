@@ -9,12 +9,17 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { HostGuest } from './host';
+import { LocationGuest } from './location';
 
 
+/**
+ * 
+ */
 export interface GroupVisitGuest { 
     id?: number;
-    location?: object;
-    hosts?: Array<object>;
+    location?: LocationGuest;
+    hosts?: Array<HostGuest>;
     name?: string;
     startTime?: string;
     endTime?: string;

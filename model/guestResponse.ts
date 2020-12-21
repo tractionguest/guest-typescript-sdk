@@ -9,6 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { CustomFieldGuest } from './customField';
 
 
 /**
@@ -22,7 +23,7 @@ export interface GuestResponseGuest {
     /**
      * Flex fields
      */
-    customFields?: Array<object>;
+    customFields?: Array<CustomFieldGuest>;
     pageType?: string;
     sequence?: number;
     /**

@@ -9,10 +9,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { CustomFieldGuest } from './customField';
 import { EmailTemplateGuest } from './emailTemplate';
 import { GroupVisitGuest } from './groupVisit';
+import { HostGuest } from './host';
 import { InviteWatchlistGuest } from './inviteWatchlist';
+import { LocationGuest } from './location';
 import { NotificationTriggerGuest } from './notificationTrigger';
+import { RegistrationGuest } from './registration';
 
 
 /**
@@ -20,7 +24,7 @@ import { NotificationTriggerGuest } from './notificationTrigger';
  */
 export interface InviteDetailGuest { 
     id: number;
-    registration?: object;
+    registration?: RegistrationGuest;
     /**
      * Phone number
      */
@@ -31,10 +35,10 @@ export interface InviteDetailGuest {
      * List of scheduled notifications for an invite
      */
     notificationTriggers?: Array<NotificationTriggerGuest>;
-    customFields?: Array<object>;
+    customFields?: Array<CustomFieldGuest>;
     watchlistColour?: InviteDetailGuest.WatchlistColourGuestEnum;
-    location?: object;
-    hosts?: Array<object>;
+    location?: LocationGuest;
+    hosts?: Array<HostGuest>;
     startDate?: Date;
     lastName: string;
     firstName: string;

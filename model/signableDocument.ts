@@ -13,6 +13,9 @@ import { DocusignGuest } from './docusign';
 import { SimpleSignatureGuest } from './simpleSignature';
 
 
+/**
+ * 
+ */
 export interface SignableDocumentGuest { 
     simpleSignatures?: Array<SimpleSignatureGuest>;
     docusigns?: Array<DocusignGuest>;

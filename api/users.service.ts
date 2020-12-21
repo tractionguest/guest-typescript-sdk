@@ -18,6 +18,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
+import { ErrorsListGuest } from '../model/errorsList';
 import { UserGuest } from '../model/user';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -29,7 +30,7 @@ import { Configuration }                                     from '../configurat
 })
 export class UsersService {
 
-    protected basePath = 'https://tractionguest.ca/api/v3';
+    protected basePath = 'https://us.tractionguest.com/api/v3';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 

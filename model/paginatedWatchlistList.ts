@@ -9,10 +9,12 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { PaginationGuest } from './pagination';
+import { WatchlistGuest } from './watchlist';
 
 
 export interface PaginatedWatchlistListGuest { 
-    watchlists: Array<object>;
-    pagination: object;
+    watchlists: Array<WatchlistGuest>;
+    pagination: PaginationGuest;
 }
 

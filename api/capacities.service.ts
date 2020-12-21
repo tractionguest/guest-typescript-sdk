@@ -20,6 +20,7 @@ import { Observable }                                        from 'rxjs';
 
 import { CapacityForecastGuest } from '../model/capacityForecast';
 import { CapacityGuest } from '../model/capacity';
+import { ErrorsListGuest } from '../model/errorsList';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -30,7 +31,7 @@ import { Configuration }                                     from '../configurat
 })
 export class CapacitiesService {
 
-    protected basePath = 'https://tractionguest.ca/api/v3';
+    protected basePath = 'https://us.tractionguest.com/api/v3';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 

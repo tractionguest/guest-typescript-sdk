@@ -18,6 +18,7 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
+import { ErrorsListGuest } from '../model/errorsList';
 import { PaginatedWatchlistListGuest } from '../model/paginatedWatchlistList';
 import { WatchlistCreateParamsGuest } from '../model/watchlistCreateParams';
 import { WatchlistGuest } from '../model/watchlist';
@@ -31,7 +32,7 @@ import { Configuration }                                     from '../configurat
 })
 export class WatchlistsService {
 
-    protected basePath = 'https://tractionguest.ca/api/v3';
+    protected basePath = 'https://us.tractionguest.com/api/v3';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -64,7 +65,7 @@ export class WatchlistsService {
     /**
      * Create Watchlist
      * Create a new &#x60;Watchlist&#x60; record. Please note, every action taken against this endpoint is recorded in the audit log.
-     * @param watchlistCreateParamsGuest 
+     * @param watchlistCreateParamsGuest The new &#x60;Watchlist&#x60; to create
      * @param idempotencyKey An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it\&#39;s submitted. We store idempotency keys for only 24 hours. Any &#x60;Idempotency-Key&#x60; shorter than 10 characters will be ignored
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
@@ -165,9 +166,9 @@ export class WatchlistsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getWatchlist(watchlistId: string, include?: string, observe?: 'body', reportProgress?: boolean): Observable<object>;
-    public getWatchlist(watchlistId: string, include?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<object>>;
-    public getWatchlist(watchlistId: string, include?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<object>>;
+    public getWatchlist(watchlistId: string, include?: string, observe?: 'body', reportProgress?: boolean): Observable<WatchlistGuest>;
+    public getWatchlist(watchlistId: string, include?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<WatchlistGuest>>;
+    public getWatchlist(watchlistId: string, include?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<WatchlistGuest>>;
     public getWatchlist(watchlistId: string, include?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (watchlistId === null || watchlistId === undefined) {
             throw new Error('Required parameter watchlistId was null or undefined when calling getWatchlist.');
@@ -194,7 +195,7 @@ export class WatchlistsService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<object>(`${this.configuration.basePath}/watchlists/${encodeURIComponent(String(watchlistId))}`,
+        return this.httpClient.get<WatchlistGuest>(`${this.configuration.basePath}/watchlists/${encodeURIComponent(String(watchlistId))}`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -269,20 +270,20 @@ export class WatchlistsService {
      * Update a Watchlist
      * Update an existing &#x60;Watchlist&#x60; record. Every operation against this endpoint is recorded in the audit log.
      * @param watchlistId 
-     * @param body The watchlist record attributes to update
+     * @param watchlistCreateParamsGuest The watchlist record attributes to update
      * @param idempotencyKey An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it\&#39;s submitted. We store idempotency keys for only 24 hours. Any &#x60;Idempotency-Key&#x60; shorter than 10 characters will be ignored
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updateWatchlist(watchlistId: string, body: object, idempotencyKey?: string, observe?: 'body', reportProgress?: boolean): Observable<object>;
-    public updateWatchlist(watchlistId: string, body: object, idempotencyKey?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<object>>;
-    public updateWatchlist(watchlistId: string, body: object, idempotencyKey?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<object>>;
-    public updateWatchlist(watchlistId: string, body: object, idempotencyKey?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public updateWatchlist(watchlistId: string, watchlistCreateParamsGuest: WatchlistCreateParamsGuest, idempotencyKey?: string, observe?: 'body', reportProgress?: boolean): Observable<WatchlistGuest>;
+    public updateWatchlist(watchlistId: string, watchlistCreateParamsGuest: WatchlistCreateParamsGuest, idempotencyKey?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<WatchlistGuest>>;
+    public updateWatchlist(watchlistId: string, watchlistCreateParamsGuest: WatchlistCreateParamsGuest, idempotencyKey?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<WatchlistGuest>>;
+    public updateWatchlist(watchlistId: string, watchlistCreateParamsGuest: WatchlistCreateParamsGuest, idempotencyKey?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (watchlistId === null || watchlistId === undefined) {
             throw new Error('Required parameter watchlistId was null or undefined when calling updateWatchlist.');
         }
-        if (body === null || body === undefined) {
-            throw new Error('Required parameter body was null or undefined when calling updateWatchlist.');
+        if (watchlistCreateParamsGuest === null || watchlistCreateParamsGuest === undefined) {
+            throw new Error('Required parameter watchlistCreateParamsGuest was null or undefined when calling updateWatchlist.');
         }
 
         let headers = this.defaultHeaders;
@@ -309,8 +310,8 @@ export class WatchlistsService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.put<object>(`${this.configuration.basePath}/watchlists/${encodeURIComponent(String(watchlistId))}`,
-            body,
+        return this.httpClient.put<WatchlistGuest>(`${this.configuration.basePath}/watchlists/${encodeURIComponent(String(watchlistId))}`,
+            watchlistCreateParamsGuest,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

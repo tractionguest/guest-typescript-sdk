@@ -16,17 +16,50 @@ import { AuditLogChangeGuest } from './auditLogChange';
  * The root of the AuditLog type\'s schema.
  */
 export interface AuditLogGuest { 
+    /**
+     * 
+     */
     id: number;
+    /**
+     * 
+     */
     createdAt?: string;
+    /**
+     * 
+     */
     requestUuid?: string;
+    /**
+     * 
+     */
     remoteAddress?: string;
+    /**
+     * 
+     */
     comment?: string;
+    /**
+     * 
+     */
     version?: number;
     auditedChanges?: Array<AuditLogChangeGuest>;
+    /**
+     * 
+     */
     action?: string;
+    /**
+     * 
+     */
     username?: string;
+    /**
+     * 
+     */
     userId?: number;
+    /**
+     * 
+     */
     auditableType?: string;
+    /**
+     * 
+     */
     auditableId?: number;
 }
 
