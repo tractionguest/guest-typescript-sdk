@@ -18,7 +18,6 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { ErrorsListGuest } from '../model/errorsList';
 import { PaginatedRegistrationsListGuest } from '../model/paginatedRegistrationsList';
 import { RegistrationDetailGuest } from '../model/registrationDetail';
 

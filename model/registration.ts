@@ -9,9 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { InviteGuest } from './invite';
-import { SigninGuest } from './signin';
-import { VisitorGuest } from './visitor';
 
 
 /**
@@ -22,8 +19,8 @@ export interface RegistrationGuest {
      * Registration unique identifier
      */
     id: string;
-    visitor?: VisitorGuest;
-    invite?: InviteGuest;
+    visitor?: object;
+    invite?: object;
     /**
      * URL of the uploaded photo
      */
@@ -44,6 +41,6 @@ export interface RegistrationGuest {
      * Datetime when registration was created
      */
     createdAt: Date;
-    signin?: SigninGuest;
+    signin?: object;
 }
 

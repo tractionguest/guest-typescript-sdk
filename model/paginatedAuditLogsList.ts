@@ -9,15 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { AuditLogGuest } from './auditLog';
-import { PaginationGuest } from './pagination';
 
 
-/**
- * 
- */
 export interface PaginatedAuditLogsListGuest { 
-    pagination: PaginationGuest;
-    auditLogs: Array<AuditLogGuest>;
+    pagination: object;
+    auditLogs: Array<object>;
 }
 

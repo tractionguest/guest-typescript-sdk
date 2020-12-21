@@ -9,12 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { HostGuest } from './host';
-import { RegistrationGuest } from './registration';
 import { SignableDocumentGuest } from './signableDocument';
 import { SigninAcknowledgementGuest } from './signinAcknowledgement';
 import { SigninDataGuest } from './signinData';
-import { SigninWatchlistGuest } from './signinWatchlist';
 
 
 /**
@@ -23,8 +20,8 @@ import { SigninWatchlistGuest } from './signinWatchlist';
 export interface SigninDetailGuest { 
     id: number;
     documents?: Array<SignableDocumentGuest>;
-    signinWatchlist?: SigninWatchlistGuest;
-    hosts?: Array<HostGuest>;
+    signinWatchlist?: object;
+    hosts?: Array<object>;
     signinData?: Array<SigninDataGuest>;
     signinAcknowledgement?: SigninAcknowledgementGuest;
     note?: string;
@@ -46,6 +43,6 @@ export interface SigninDetailGuest {
     firstName?: string;
     email?: string;
     company?: string;
-    registration?: RegistrationGuest;
+    registration?: object;
 }
 

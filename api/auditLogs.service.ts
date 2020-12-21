@@ -19,7 +19,6 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 import { AuditLogGuest } from '../model/auditLog';
-import { ErrorsListGuest } from '../model/errorsList';
 import { PaginatedAuditLogsListGuest } from '../model/paginatedAuditLogsList';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';

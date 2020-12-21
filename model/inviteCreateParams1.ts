@@ -9,45 +9,30 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { GuestResponseGuest } from './guestResponse';
-import { InviteGuest } from './invite';
-import { VisitorGuest } from './visitor';
+import { CustomFieldGuest } from './customField';
+import { NotificationTrigger1Guest } from './notificationTrigger1';
 
 
 /**
- * The data of a Registration
+ * The root of the InviteUpdateParams type\'s schema.
  */
-export interface RegistrationDetailGuest { 
+export interface InviteCreateParams1Guest { 
+    mobileNumber?: string;
     /**
-     * Registration unique identifier
+     * Used for transfering ownership of an `Invite` to another member of the Account
      */
-    id: string;
-    visitor?: VisitorGuest;
-    invite?: InviteGuest;
-    /**
-     * Response given by the guest
-     */
-    guestResponses?: Array<GuestResponseGuest>;
-    /**
-     * URL of the uploaded photo
-     */
-    photoUrl?: string | null;
-    /**
-     * Company\'s name
-     */
-    company?: string | null;
-    /**
-     * E-mail
-     */
-    email?: string | null;
-    /**
-     * Guest\'s name
-     */
-    name?: string | null;
-    /**
-     * Datetime when registration was created
-     */
-    createdAt: Date;
-    signin?: object;
+    userId?: number;
+    onPremise?: boolean;
+    notificationTriggers?: Array<NotificationTrigger1Guest>;
+    firstName?: string;
+    emailTemplateId?: number;
+    customFields?: Array<CustomFieldGuest>;
+    hostIds?: Array<number>;
+    title?: string;
+    startDate?: Date;
+    lastName?: string;
+    endDate?: Date;
+    email?: string;
+    company?: string;
 }
 

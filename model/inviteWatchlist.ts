@@ -9,8 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ExternalWatchlistResultGuest } from './externalWatchlistResult';
-import { InternalWatchlistResultGuest } from './internalWatchlistResult';
 
 
 /**
@@ -18,8 +16,8 @@ import { InternalWatchlistResultGuest } from './internalWatchlistResult';
  */
 export interface InviteWatchlistGuest { 
     id: number;
-    internal?: Array<InternalWatchlistResultGuest>;
-    external?: Array<ExternalWatchlistResultGuest>;
+    internal?: Array<object>;
+    external?: Array<object>;
     /**
      * Deprecated
      */

@@ -9,11 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { GroupVisitGuest } from './groupVisit';
-import { HostGuest } from './host';
-import { InviteWatchlistGuest } from './inviteWatchlist';
-import { LocationGuest } from './location';
-import { RegistrationGuest } from './registration';
 
 
 /**
@@ -21,27 +16,18 @@ import { RegistrationGuest } from './registration';
  */
 export interface InviteGuest { 
     id: number;
-    registration?: RegistrationGuest;
-    /**
-     * 
-     */
+    registration?: object;
     mobileNumber?: string | null;
-    /**
-     * 
-     */
     email: string | null;
-    /**
-     * 
-     */
     endDate?: Date | null;
-    inviteWatchlist?: InviteWatchlistGuest;
-    hosts?: Array<HostGuest>;
+    inviteWatchlist?: object;
+    hosts?: Array<object>;
     watchlistColour?: InviteGuest.WatchlistColourGuestEnum | null;
-    location?: LocationGuest;
+    location?: object;
     startDate?: Date;
     lastName: string | null;
     firstName: string | null;
-    groupVisit?: GroupVisitGuest;
+    groupVisit?: object;
 }
 export namespace InviteGuest {
     export type WatchlistColourGuestEnum = 'RED' | 'GREEN' | 'YELLOW' | 'ORANGE';

@@ -11,29 +11,11 @@
  */
 
 
-/**
- * 
- */
 export interface InternalWatchlistResultGuest { 
-    /**
-     * 
-     */
     id?: number;
-    /**
-     * 
-     */
     email?: string;
-    /**
-     * 
-     */
     colour: string;
-    /**
-     * 
-     */
     lastName?: string;
-    /**
-     * 
-     */
     firstName?: string;
 }
 

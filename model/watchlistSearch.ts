@@ -11,9 +11,6 @@
  */
 
 
-/**
- * 
- */
 export interface WatchlistSearchGuest { 
     name?: string;
     company?: string;

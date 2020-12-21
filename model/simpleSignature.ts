@@ -11,25 +11,10 @@
  */
 
 
-/**
- * 
- */
 export interface SimpleSignatureGuest { 
-    /**
-     * 
-     */
     status?: string;
-    /**
-     * 
-     */
     templateName?: string;
-    /**
-     * 
-     */
     id?: string;
-    /**
-     * 
-     */
     title?: string;
 }
 

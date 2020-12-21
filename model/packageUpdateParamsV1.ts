@@ -9,45 +9,23 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { GuestResponseGuest } from './guestResponse';
-import { InviteGuest } from './invite';
-import { VisitorGuest } from './visitor';
 
 
 /**
- * The data of a Registration
+ * Update/Edit information about a Package.  [picked_up] - changes the package_state to picked up and assigns non null value to picked_up_at  [recipient_id] - update the package\'s intended recipient. Changes package_state to \'recipient_matched\' and notifies host about their package via email. A previous recipient will stop getting notifications  [carrier_name] - change/update the package\'s carrier/courier information 
  */
-export interface RegistrationDetailGuest { 
+export interface PackageUpdateParamsV1Guest { 
     /**
-     * Registration unique identifier
+     * changes the package_state to picked up and assigns non null value to picked_up_at
      */
-    id: string;
-    visitor?: VisitorGuest;
-    invite?: InviteGuest;
+    pickedUp?: boolean;
     /**
-     * Response given by the guest
+     * change/update the package\'s carrier/courier information
      */
-    guestResponses?: Array<GuestResponseGuest>;
+    carrierName?: string;
     /**
-     * URL of the uploaded photo
+     * id of the Host for which you want to send notifications to regarding their package
      */
-    photoUrl?: string | null;
-    /**
-     * Company\'s name
-     */
-    company?: string | null;
-    /**
-     * E-mail
-     */
-    email?: string | null;
-    /**
-     * Guest\'s name
-     */
-    name?: string | null;
-    /**
-     * Datetime when registration was created
-     */
-    createdAt: Date;
-    signin?: object;
+    recipientId?: number;
 }
 

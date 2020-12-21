@@ -9,45 +9,19 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { GuestResponseGuest } from './guestResponse';
-import { InviteGuest } from './invite';
-import { VisitorGuest } from './visitor';
 
 
 /**
- * The data of a Registration
+ * A [base64_image] string is provided as an encoded image of a shipping label. The image will be processed to determine the package\'s intended recipient. If a match is found between the recipient and an existing host, they\'ll be notified about the arrival of their package at the [location_id] specified.
  */
-export interface RegistrationDetailGuest { 
+export interface PackageCreateParamsV1Guest { 
     /**
-     * Registration unique identifier
+     * Base64 encoded image on which to perform processing
      */
-    id: string;
-    visitor?: VisitorGuest;
-    invite?: InviteGuest;
+    base64Image: string;
     /**
-     * Response given by the guest
+     * Location id for where the package was delivered
      */
-    guestResponses?: Array<GuestResponseGuest>;
-    /**
-     * URL of the uploaded photo
-     */
-    photoUrl?: string | null;
-    /**
-     * Company\'s name
-     */
-    company?: string | null;
-    /**
-     * E-mail
-     */
-    email?: string | null;
-    /**
-     * Guest\'s name
-     */
-    name?: string | null;
-    /**
-     * Datetime when registration was created
-     */
-    createdAt: Date;
-    signin?: object;
+    locationId: number;
 }
 

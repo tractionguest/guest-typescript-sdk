@@ -18,11 +18,9 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { ErrorsListGuest } from '../model/errorsList';
-import { PackageCreateParamsGuest } from '../model/packageCreateParams';
 import { PackageGuest } from '../model/package';
-import { PackageUpdateParamsGuest } from '../model/packageUpdateParams';
 import { PaginatedPackagesListGuest } from '../model/paginatedPackagesList';
+import { UNKNOWN_BASE_TYPE } from '../model/uNKNOWNBASETYPE';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -66,14 +64,14 @@ export class PackagesService {
     /**
      * Create package
      * Creates a [Package] entity by extracting information about the recipient and carrier from the given image file.
-     * @param packageCreateParamsGuest Parameters for creating a package
+     * @param UNKNOWN_BASE_TYPE Parameters for creating a package
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createPackage(packageCreateParamsGuest?: PackageCreateParamsGuest, observe?: 'body', reportProgress?: boolean): Observable<PackageGuest>;
-    public createPackage(packageCreateParamsGuest?: PackageCreateParamsGuest, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PackageGuest>>;
-    public createPackage(packageCreateParamsGuest?: PackageCreateParamsGuest, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PackageGuest>>;
-    public createPackage(packageCreateParamsGuest?: PackageCreateParamsGuest, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public createPackage(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, observe?: 'body', reportProgress?: boolean): Observable<PackageGuest>;
+    public createPackage(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PackageGuest>>;
+    public createPackage(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PackageGuest>>;
+    public createPackage(UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -97,7 +95,7 @@ export class PackagesService {
         }
 
         return this.httpClient.post<PackageGuest>(`${this.configuration.basePath}/packages`,
-            packageCreateParamsGuest,
+            UNKNOWN_BASE_TYPE,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -160,9 +158,9 @@ export class PackagesService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getPackage(packageId: string, include?: string, observe?: 'body', reportProgress?: boolean): Observable<PackageGuest>;
-    public getPackage(packageId: string, include?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PackageGuest>>;
-    public getPackage(packageId: string, include?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PackageGuest>>;
+    public getPackage(packageId: string, include?: string, observe?: 'body', reportProgress?: boolean): Observable<object>;
+    public getPackage(packageId: string, include?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<object>>;
+    public getPackage(packageId: string, include?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<object>>;
     public getPackage(packageId: string, include?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (packageId === null || packageId === undefined) {
             throw new Error('Required parameter packageId was null or undefined when calling getPackage.');
@@ -189,7 +187,7 @@ export class PackagesService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<PackageGuest>(`${this.configuration.basePath}/packages/${encodeURIComponent(String(packageId))}`,
+        return this.httpClient.get<object>(`${this.configuration.basePath}/packages/${encodeURIComponent(String(packageId))}`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -269,14 +267,14 @@ export class PackagesService {
      * Update/Edit information about a Package.  picked_up - changes the package_state to picked up and assigns non null value to picked_up_at  recipient_id - update the package\&#39;s intended recipient. Changes package_state to \&#39;recipient_matched\&#39; if a match hasn\&#39;t been found and notifies host about their package via email. A previous recipient will stop getting notifications  carrier_name - change/update the package\&#39;s carrier/courier information    
      * @param packageId 
      * @param idempotencyKey An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it\&#39;s submitted. We store idempotency keys for only 24 hours. Any &#x60;Idempotency-Key&#x60; shorter than 10 characters will be ignored
-     * @param packageUpdateParamsGuest 
+     * @param UNKNOWN_BASE_TYPE 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updatePackage(packageId: string, idempotencyKey?: string, packageUpdateParamsGuest?: PackageUpdateParamsGuest, observe?: 'body', reportProgress?: boolean): Observable<PackageGuest>;
-    public updatePackage(packageId: string, idempotencyKey?: string, packageUpdateParamsGuest?: PackageUpdateParamsGuest, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PackageGuest>>;
-    public updatePackage(packageId: string, idempotencyKey?: string, packageUpdateParamsGuest?: PackageUpdateParamsGuest, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PackageGuest>>;
-    public updatePackage(packageId: string, idempotencyKey?: string, packageUpdateParamsGuest?: PackageUpdateParamsGuest, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public updatePackage(packageId: string, idempotencyKey?: string, UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, observe?: 'body', reportProgress?: boolean): Observable<object>;
+    public updatePackage(packageId: string, idempotencyKey?: string, UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<object>>;
+    public updatePackage(packageId: string, idempotencyKey?: string, UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<object>>;
+    public updatePackage(packageId: string, idempotencyKey?: string, UNKNOWN_BASE_TYPE?: UNKNOWN_BASE_TYPE, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (packageId === null || packageId === undefined) {
             throw new Error('Required parameter packageId was null or undefined when calling updatePackage.');
         }
@@ -305,8 +303,8 @@ export class PackagesService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.put<PackageGuest>(`${this.configuration.basePath}/packages/${encodeURIComponent(String(packageId))}`,
-            packageUpdateParamsGuest,
+        return this.httpClient.put<object>(`${this.configuration.basePath}/packages/${encodeURIComponent(String(packageId))}`,
+            UNKNOWN_BASE_TYPE,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

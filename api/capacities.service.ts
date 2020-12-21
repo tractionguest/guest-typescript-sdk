@@ -20,7 +20,6 @@ import { Observable }                                        from 'rxjs';
 
 import { CapacityForecastGuest } from '../model/capacityForecast';
 import { CapacityGuest } from '../model/capacity';
-import { ErrorsListGuest } from '../model/errorsList';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';

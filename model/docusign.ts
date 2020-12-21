@@ -11,45 +11,15 @@
  */
 
 
-/**
- * 
- */
 export interface DocusignGuest { 
-    /**
-     * 
-     */
     templateId?: string;
-    /**
-     * 
-     */
     integration?: string;
-    /**
-     * 
-     */
     ndaStatus?: string;
-    /**
-     * 
-     */
     ndaSignedDate?: Date;
-    /**
-     * 
-     */
     envelopeId?: string;
-    /**
-     * 
-     */
     sequence?: string;
-    /**
-     * 
-     */
     docusignId?: string;
-    /**
-     * 
-     */
     docusignName?: string;
-    /**
-     * 
-     */
     title?: string;
 }
 

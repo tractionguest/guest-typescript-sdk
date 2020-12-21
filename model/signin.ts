@@ -9,7 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { HostGuest } from './host';
 import { RegistrationGuest } from './registration';
 import { SigninWatchlistGuest } from './signinWatchlist';
 
@@ -18,7 +17,7 @@ export interface SigninGuest {
     id: number;
     mobileNumber?: string;
     signinWatchlist?: SigninWatchlistGuest;
-    hosts: Array<HostGuest>;
+    hosts: Array<object>;
     signinTimestamp?: Date;
     signinPhotoUrl?: string;
     signedOutTimestamp?: Date;

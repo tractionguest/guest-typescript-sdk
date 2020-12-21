@@ -11,9 +11,6 @@
  */
 
 
-/**
- * 
- */
 export interface AuditLogChangeGuest { 
     /**
      * What the field should be displayed/labeled as

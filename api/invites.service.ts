@@ -18,10 +18,9 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { ErrorsListGuest } from '../model/errorsList';
+import { InviteCreateParams1Guest } from '../model/inviteCreateParams1';
 import { InviteCreateParamsGuest } from '../model/inviteCreateParams';
 import { InviteDetailGuest } from '../model/inviteDetail';
-import { InviteUpdateParamsGuest } from '../model/inviteUpdateParams';
 import { PaginatedInvitesListGuest } from '../model/paginatedInvitesList';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -72,9 +71,9 @@ export class InvitesService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createLocationInvite(locationId: string, inviteCreateParamsGuest: InviteCreateParamsGuest, idempotencyKey?: string, observe?: 'body', reportProgress?: boolean): Observable<InviteDetailGuest>;
-    public createLocationInvite(locationId: string, inviteCreateParamsGuest: InviteCreateParamsGuest, idempotencyKey?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InviteDetailGuest>>;
-    public createLocationInvite(locationId: string, inviteCreateParamsGuest: InviteCreateParamsGuest, idempotencyKey?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InviteDetailGuest>>;
+    public createLocationInvite(locationId: string, inviteCreateParamsGuest: InviteCreateParamsGuest, idempotencyKey?: string, observe?: 'body', reportProgress?: boolean): Observable<object>;
+    public createLocationInvite(locationId: string, inviteCreateParamsGuest: InviteCreateParamsGuest, idempotencyKey?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<object>>;
+    public createLocationInvite(locationId: string, inviteCreateParamsGuest: InviteCreateParamsGuest, idempotencyKey?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<object>>;
     public createLocationInvite(locationId: string, inviteCreateParamsGuest: InviteCreateParamsGuest, idempotencyKey?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (locationId === null || locationId === undefined) {
             throw new Error('Required parameter locationId was null or undefined when calling createLocationInvite.');
@@ -107,7 +106,7 @@ export class InvitesService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.post<InviteDetailGuest>(`${this.configuration.basePath}/locations/${encodeURIComponent(String(locationId))}/invites`,
+        return this.httpClient.post<object>(`${this.configuration.basePath}/locations/${encodeURIComponent(String(locationId))}/invites`,
             inviteCreateParamsGuest,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -126,9 +125,9 @@ export class InvitesService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createRegistrationInvite(registrationId: string, idempotencyKey?: string, observe?: 'body', reportProgress?: boolean): Observable<InviteDetailGuest>;
-    public createRegistrationInvite(registrationId: string, idempotencyKey?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InviteDetailGuest>>;
-    public createRegistrationInvite(registrationId: string, idempotencyKey?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InviteDetailGuest>>;
+    public createRegistrationInvite(registrationId: string, idempotencyKey?: string, observe?: 'body', reportProgress?: boolean): Observable<object>;
+    public createRegistrationInvite(registrationId: string, idempotencyKey?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<object>>;
+    public createRegistrationInvite(registrationId: string, idempotencyKey?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<object>>;
     public createRegistrationInvite(registrationId: string, idempotencyKey?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (registrationId === null || registrationId === undefined) {
             throw new Error('Required parameter registrationId was null or undefined when calling createRegistrationInvite.');
@@ -153,7 +152,7 @@ export class InvitesService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.post<InviteDetailGuest>(`${this.configuration.basePath}/registrations/${encodeURIComponent(String(registrationId))}/invites`,
+        return this.httpClient.post<object>(`${this.configuration.basePath}/registrations/${encodeURIComponent(String(registrationId))}/invites`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,
@@ -349,20 +348,20 @@ export class InvitesService {
      * Update an Invite
      * Updates an existing &#x60;Invite&#x60;.
      * @param inviteId 
-     * @param inviteUpdateParamsGuest Updated &#x60;Invite&#x60; information.
+     * @param inviteCreateParams1Guest 
      * @param idempotencyKey An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it\&#39;s submitted. We store idempotency keys for only 24 hours. Any &#x60;Idempotency-Key&#x60; shorter than 10 characters will be ignored
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updateInvite(inviteId: string, inviteUpdateParamsGuest: InviteUpdateParamsGuest, idempotencyKey?: string, observe?: 'body', reportProgress?: boolean): Observable<InviteDetailGuest>;
-    public updateInvite(inviteId: string, inviteUpdateParamsGuest: InviteUpdateParamsGuest, idempotencyKey?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<InviteDetailGuest>>;
-    public updateInvite(inviteId: string, inviteUpdateParamsGuest: InviteUpdateParamsGuest, idempotencyKey?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<InviteDetailGuest>>;
-    public updateInvite(inviteId: string, inviteUpdateParamsGuest: InviteUpdateParamsGuest, idempotencyKey?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public updateInvite(inviteId: string, inviteCreateParams1Guest: InviteCreateParams1Guest, idempotencyKey?: string, observe?: 'body', reportProgress?: boolean): Observable<object>;
+    public updateInvite(inviteId: string, inviteCreateParams1Guest: InviteCreateParams1Guest, idempotencyKey?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<object>>;
+    public updateInvite(inviteId: string, inviteCreateParams1Guest: InviteCreateParams1Guest, idempotencyKey?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<object>>;
+    public updateInvite(inviteId: string, inviteCreateParams1Guest: InviteCreateParams1Guest, idempotencyKey?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (inviteId === null || inviteId === undefined) {
             throw new Error('Required parameter inviteId was null or undefined when calling updateInvite.');
         }
-        if (inviteUpdateParamsGuest === null || inviteUpdateParamsGuest === undefined) {
-            throw new Error('Required parameter inviteUpdateParamsGuest was null or undefined when calling updateInvite.');
+        if (inviteCreateParams1Guest === null || inviteCreateParams1Guest === undefined) {
+            throw new Error('Required parameter inviteCreateParams1Guest was null or undefined when calling updateInvite.');
         }
 
         let headers = this.defaultHeaders;
@@ -389,8 +388,8 @@ export class InvitesService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.put<InviteDetailGuest>(`${this.configuration.basePath}/invites/${encodeURIComponent(String(inviteId))}`,
-            inviteUpdateParamsGuest,
+        return this.httpClient.put<object>(`${this.configuration.basePath}/invites/${encodeURIComponent(String(inviteId))}`,
+            inviteCreateParams1Guest,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

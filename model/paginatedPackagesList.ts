@@ -9,12 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { PackageGuest } from './package';
-import { PaginationGuest } from './pagination';
 
 
 export interface PaginatedPackagesListGuest { 
-    packages: Array<PackageGuest>;
-    pagination: PaginationGuest;
+    packages: Array<object>;
+    pagination: object;
 }
 

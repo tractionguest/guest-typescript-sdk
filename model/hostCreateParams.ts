@@ -19,9 +19,6 @@ export interface HostCreateParamsGuest {
     firstName?: string;
     lastName?: string;
     profilePicUrl?: string;
-    /**
-     * 
-     */
     department?: string;
     mobileNumber?: string;
 }

@@ -9,45 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { GuestResponseGuest } from './guestResponse';
-import { InviteGuest } from './invite';
-import { VisitorGuest } from './visitor';
 
 
-/**
- * The data of a Registration
- */
-export interface RegistrationDetailGuest { 
-    /**
-     * Registration unique identifier
-     */
-    id: string;
-    visitor?: VisitorGuest;
-    invite?: InviteGuest;
-    /**
-     * Response given by the guest
-     */
-    guestResponses?: Array<GuestResponseGuest>;
-    /**
-     * URL of the uploaded photo
-     */
-    photoUrl?: string | null;
-    /**
-     * Company\'s name
-     */
-    company?: string | null;
-    /**
-     * E-mail
-     */
-    email?: string | null;
-    /**
-     * Guest\'s name
-     */
-    name?: string | null;
-    /**
-     * Datetime when registration was created
-     */
-    createdAt: Date;
-    signin?: object;
+export interface ImageV1Guest { 
+    fullSizeUrl?: string;
 }
 

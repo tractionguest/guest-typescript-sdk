@@ -9,9 +9,6 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { HostGuest } from './host';
-import { ImageGuest } from './image';
-import { LocationGuest } from './location';
 
 
 /**
@@ -19,8 +16,8 @@ import { LocationGuest } from './location';
  */
 export interface PackageGuest { 
     id: number;
-    recipient?: HostGuest;
-    location: LocationGuest;
+    recipient?: object;
+    location: object;
     /**
      * this can be one of the following states: \'processing\', \'recipient_matched\', \'needs_attention\' or \'picked_up\'
      */
@@ -31,7 +28,7 @@ export interface PackageGuest {
     carrierName?: string;
     pickedUpAt?: Date | null;
     createdAt: Date;
-    image?: ImageGuest;
+    image?: object;
 }
 export namespace PackageGuest {
     export type PackageStateGuestEnum = 'processing' | 'recipient_matched' | 'needs_attention' | 'picked_up';
