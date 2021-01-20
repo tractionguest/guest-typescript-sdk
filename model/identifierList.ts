@@ -11,35 +11,7 @@
  */
 
 
-/**
- * 
- */
-export interface AuditLogChangeGuest { 
-    /**
-     * What the field should be displayed/labeled as
-     */
-    fieldName?: string;
-    /**
-     * The value to be displayed for the field before changes
-     */
-    fieldValueBefore?: string;
-    /**
-     * The value to be displayed for the field after changes
-     */
-    fieldValueAfter?: string;
-    /**
-     * The format type of the field
-     */
-    format?: AuditLogChangeGuest.FormatGuestEnum;
-}
-export namespace AuditLogChangeGuest {
-    export type FormatGuestEnum = 'string' | 'boolean' | 'integer' | 'json' | 'no_value';
-    export const FormatGuestEnum = {
-        String: 'string' as FormatGuestEnum,
-        Boolean: 'boolean' as FormatGuestEnum,
-        Integer: 'integer' as FormatGuestEnum,
-        Json: 'json' as FormatGuestEnum,
-        NoValue: 'no_value' as FormatGuestEnum
-    };
+export interface IdentifierListGuest { 
+    ids?: Array<string>;
 }
 

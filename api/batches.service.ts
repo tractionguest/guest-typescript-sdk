@@ -18,9 +18,9 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 
 import { Observable }                                        from 'rxjs';
 
-import { CapacityForecastGuest } from '../model/capacityForecast';
-import { CapacityGuest } from '../model/capacity';
+import { BatchJobGuest } from '../model/batchJob';
 import { ErrorsListGuest } from '../model/errorsList';
+import { IdentifierListGuest } from '../model/identifierList';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -29,7 +29,7 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class CapacitiesService {
+export class BatchesService {
 
     protected basePath = 'https://us.tractionguest.com/api/v3';
     public defaultHeaders = new HttpHeaders();
@@ -62,19 +62,16 @@ export class CapacitiesService {
 
 
     /**
-     * Get the current capacity details for a location
-     * Get details of current capacity in a location
-     * @param locationId 
+     * Delete Multiple Invites
+     * Queues up a \&quot;delete\&quot; background task for one or more &#x60;Invite&#x60; entities.
+     * @param identifierListGuest 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getCapacity(locationId: string, observe?: 'body', reportProgress?: boolean): Observable<CapacityGuest>;
-    public getCapacity(locationId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CapacityGuest>>;
-    public getCapacity(locationId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CapacityGuest>>;
-    public getCapacity(locationId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (locationId === null || locationId === undefined) {
-            throw new Error('Required parameter locationId was null or undefined when calling getCapacity.');
-        }
+    public batchDeleteInvites(identifierListGuest?: IdentifierListGuest, observe?: 'body', reportProgress?: boolean): Observable<BatchJobGuest>;
+    public batchDeleteInvites(identifierListGuest?: IdentifierListGuest, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<BatchJobGuest>>;
+    public batchDeleteInvites(identifierListGuest?: IdentifierListGuest, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<BatchJobGuest>>;
+    public batchDeleteInvites(identifierListGuest?: IdentifierListGuest, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
 
@@ -90,9 +87,15 @@ export class CapacitiesService {
 
         // to determine the Content-Type header
         const consumes: string[] = [
+            'application/json'
         ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            headers = headers.set('Content-Type', httpContentTypeSelected);
+        }
 
-        return this.httpClient.get<CapacityGuest>(`${this.configuration.basePath}/locations/${encodeURIComponent(String(locationId))}/capacities`,
+        return this.httpClient.post<BatchJobGuest>(`${this.configuration.basePath}/invites/batch_delete`,
+            identifierListGuest,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -103,28 +106,18 @@ export class CapacitiesService {
     }
 
     /**
-     * Get the capacity details for a location
-     * Gets the details of the future capacity in a location.
-     * @param locationId 
-     * @param hoursToForecast The next N number of hours, the data needs to be calculated. Range from 1 to 24. If not set, it defaults to 8.
-     * @param timestamp ISO8601 timestamp(includes the offset value) to use as the start point for the capacity estimate report. Defaults to the current local timestamp of the location if not provided. Eg: \&quot;2020-07-16T17:05:08-07:00\&quot;
+     * Get a BatchJob
+     * Retrieve a given &#x60;BatchJob&#x60; entity.
+     * @param batchId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getCapacityForecast(locationId: string, hoursToForecast?: number, timestamp?: string, observe?: 'body', reportProgress?: boolean): Observable<CapacityForecastGuest>;
-    public getCapacityForecast(locationId: string, hoursToForecast?: number, timestamp?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<CapacityForecastGuest>>;
-    public getCapacityForecast(locationId: string, hoursToForecast?: number, timestamp?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<CapacityForecastGuest>>;
-    public getCapacityForecast(locationId: string, hoursToForecast?: number, timestamp?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (locationId === null || locationId === undefined) {
-            throw new Error('Required parameter locationId was null or undefined when calling getCapacityForecast.');
-        }
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (hoursToForecast !== undefined && hoursToForecast !== null) {
-            queryParameters = queryParameters.set('hours_to_forecast', <any>hoursToForecast);
-        }
-        if (timestamp !== undefined && timestamp !== null) {
-            queryParameters = queryParameters.set('timestamp', <any>timestamp);
+    public getBatch(batchId: string, observe?: 'body', reportProgress?: boolean): Observable<BatchJobGuest>;
+    public getBatch(batchId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<BatchJobGuest>>;
+    public getBatch(batchId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<BatchJobGuest>>;
+    public getBatch(batchId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (batchId === null || batchId === undefined) {
+            throw new Error('Required parameter batchId was null or undefined when calling getBatch.');
         }
 
         let headers = this.defaultHeaders;
@@ -143,9 +136,8 @@ export class CapacitiesService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<CapacityForecastGuest>(`${this.configuration.basePath}/locations/${encodeURIComponent(String(locationId))}/capacity_forecasts`,
+        return this.httpClient.get<BatchJobGuest>(`${this.configuration.basePath}/batches/${encodeURIComponent(String(batchId))}`,
             {
-                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,

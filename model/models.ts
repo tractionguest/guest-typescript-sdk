@@ -14,6 +14,7 @@ export * from './guestResponse';
 export * from './hostBatchCreateParams';
 export * from './hostCreateParams';
 export * from './host';
+export * from './identifierList';
 export * from './image';
 export * from './internalWatchlistResult';
 export * from './inviteCreateParams';
