@@ -31,7 +31,7 @@ import { Configuration }                                     from '../configurat
 })
 export class RegistrationsService {
 
-    protected basePath = 'https://us.tractionguest.com/api/v3';
+    protected basePath = 'https://tractionguest.ca/api/v3';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -117,13 +117,14 @@ export class RegistrationsService {
      * @param locationIds A comma separated list of Location IDs
      * @param createdBefore Restricts results to only those that were created before the provided date
      * @param createdAfter Restricts results to only those that were created after the provided date
+     * @param needsConfirmation A confirmed &#x60;Registration&#x60; is one with an associated &#x60;Invite&#x60;. This filter returns those without an &#x60;Invite&#x60; when true, and those with an &#x60;Invite&#x60; when false.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getRegistrations(limit?: number, offset?: number, locationIds?: string, createdBefore?: string, createdAfter?: string, observe?: 'body', reportProgress?: boolean): Observable<PaginatedRegistrationsListGuest>;
-    public getRegistrations(limit?: number, offset?: number, locationIds?: string, createdBefore?: string, createdAfter?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PaginatedRegistrationsListGuest>>;
-    public getRegistrations(limit?: number, offset?: number, locationIds?: string, createdBefore?: string, createdAfter?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PaginatedRegistrationsListGuest>>;
-    public getRegistrations(limit?: number, offset?: number, locationIds?: string, createdBefore?: string, createdAfter?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getRegistrations(limit?: number, offset?: number, locationIds?: string, createdBefore?: string, createdAfter?: string, needsConfirmation?: boolean, observe?: 'body', reportProgress?: boolean): Observable<PaginatedRegistrationsListGuest>;
+    public getRegistrations(limit?: number, offset?: number, locationIds?: string, createdBefore?: string, createdAfter?: string, needsConfirmation?: boolean, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PaginatedRegistrationsListGuest>>;
+    public getRegistrations(limit?: number, offset?: number, locationIds?: string, createdBefore?: string, createdAfter?: string, needsConfirmation?: boolean, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PaginatedRegistrationsListGuest>>;
+    public getRegistrations(limit?: number, offset?: number, locationIds?: string, createdBefore?: string, createdAfter?: string, needsConfirmation?: boolean, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
         if (limit !== undefined && limit !== null) {
@@ -140,6 +141,9 @@ export class RegistrationsService {
         }
         if (createdAfter !== undefined && createdAfter !== null) {
             queryParameters = queryParameters.set('created_after', <any>createdAfter);
+        }
+        if (needsConfirmation !== undefined && needsConfirmation !== null) {
+            queryParameters = queryParameters.set('needs_confirmation', <any>needsConfirmation);
         }
 
         let headers = this.defaultHeaders;

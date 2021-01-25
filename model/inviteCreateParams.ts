@@ -33,7 +33,6 @@ export interface InviteCreateParamsGuest {
     endDate?: Date;
     email: string;
     company?: string;
-    groupVisitId?: string;
 }
 export namespace InviteCreateParamsGuest {
     export type WatchlistColourGuestEnum = 'RED' | 'GREEN' | 'YELLOW' | 'ORANGE';
