@@ -32,7 +32,7 @@ import { Configuration }                                     from '../configurat
 })
 export class GroupVisitsService {
 
-    protected basePath = 'https://us.tractionguest.com/api/v3';
+    protected basePath = 'https://tractionguest.ca/api/v3';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
