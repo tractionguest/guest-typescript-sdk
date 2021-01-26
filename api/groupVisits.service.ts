@@ -19,10 +19,9 @@ import { CustomHttpUrlEncodingCodec }                        from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 import { ErrorsListGuest } from '../model/errorsList';
-import { PackageCreateParamsGuest } from '../model/packageCreateParams';
-import { PackageGuest } from '../model/package';
-import { PackageUpdateParamsGuest } from '../model/packageUpdateParams';
-import { PaginatedPackagesListGuest } from '../model/paginatedPackagesList';
+import { GroupVisitCreateParamsGuest } from '../model/groupVisitCreateParams';
+import { GroupVisitGuest } from '../model/groupVisit';
+import { GroupVisitUpdateParamsGuest } from '../model/groupVisitUpdateParams';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -31,7 +30,7 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class PackagesService {
+export class GroupVisitsService {
 
     protected basePath = 'https://us.tractionguest.com/api/v3';
     public defaultHeaders = new HttpHeaders();
@@ -64,18 +63,22 @@ export class PackagesService {
 
 
     /**
-     * Create package
-     * Creates a [Package] entity by extracting information about the recipient and carrier from the given image file.
-     * @param packageCreateParamsGuest Parameters for creating a package
+     * Create a new Group Visit (Appointment)
+     * Creates a &#x60;GroupVisit&#x60; (Appointment)
+     * @param idempotencyKey An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it\&#39;s submitted. We store idempotency keys for only 24 hours. Any &#x60;Idempotency-Key&#x60; shorter than 10 characters will be ignored
+     * @param groupVisitCreateParamsGuest 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public createPackage(packageCreateParamsGuest?: PackageCreateParamsGuest, observe?: 'body', reportProgress?: boolean): Observable<PackageGuest>;
-    public createPackage(packageCreateParamsGuest?: PackageCreateParamsGuest, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PackageGuest>>;
-    public createPackage(packageCreateParamsGuest?: PackageCreateParamsGuest, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PackageGuest>>;
-    public createPackage(packageCreateParamsGuest?: PackageCreateParamsGuest, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public createGroupVisit(idempotencyKey?: string, groupVisitCreateParamsGuest?: GroupVisitCreateParamsGuest, observe?: 'body', reportProgress?: boolean): Observable<GroupVisitGuest>;
+    public createGroupVisit(idempotencyKey?: string, groupVisitCreateParamsGuest?: GroupVisitCreateParamsGuest, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GroupVisitGuest>>;
+    public createGroupVisit(idempotencyKey?: string, groupVisitCreateParamsGuest?: GroupVisitCreateParamsGuest, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GroupVisitGuest>>;
+    public createGroupVisit(idempotencyKey?: string, groupVisitCreateParamsGuest?: GroupVisitCreateParamsGuest, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let headers = this.defaultHeaders;
+        if (idempotencyKey !== undefined && idempotencyKey !== null) {
+            headers = headers.set('Idempotency-Key', String(idempotencyKey));
+        }
 
         // authentication (TractionGuestAuth) required
         // to determine the Accept header
@@ -96,8 +99,8 @@ export class PackagesService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.post<PackageGuest>(`${this.configuration.basePath}/packages`,
-            packageCreateParamsGuest,
+        return this.httpClient.post<GroupVisitGuest>(`${this.configuration.basePath}/group_visits`,
+            groupVisitCreateParamsGuest,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -108,19 +111,19 @@ export class PackagesService {
     }
 
     /**
-     * 
-     * Delete a pacakge
-     * @param packageId 
+     * Delete a Group Visit (Appointment)
+     * Deletes a single instance of &#x60;GroupVisit&#x60; (Appointment).
+     * @param groupVisitId 
      * @param idempotencyKey An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it\&#39;s submitted. We store idempotency keys for only 24 hours. Any &#x60;Idempotency-Key&#x60; shorter than 10 characters will be ignored
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deletePackage(packageId: string, idempotencyKey?: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
-    public deletePackage(packageId: string, idempotencyKey?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
-    public deletePackage(packageId: string, idempotencyKey?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
-    public deletePackage(packageId: string, idempotencyKey?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (packageId === null || packageId === undefined) {
-            throw new Error('Required parameter packageId was null or undefined when calling deletePackage.');
+    public deleteGroupVisit(groupVisitId: string, idempotencyKey?: string, observe?: 'body', reportProgress?: boolean): Observable<any>;
+    public deleteGroupVisit(groupVisitId: string, idempotencyKey?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<any>>;
+    public deleteGroupVisit(groupVisitId: string, idempotencyKey?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<any>>;
+    public deleteGroupVisit(groupVisitId: string, idempotencyKey?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (groupVisitId === null || groupVisitId === undefined) {
+            throw new Error('Required parameter groupVisitId was null or undefined when calling deleteGroupVisit.');
         }
 
         let headers = this.defaultHeaders;
@@ -131,7 +134,6 @@ export class PackagesService {
         // authentication (TractionGuestAuth) required
         // to determine the Accept header
         const httpHeaderAccepts: string[] = [
-            'application/json'
         ];
         const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
         if (httpHeaderAcceptSelected !== undefined) {
@@ -142,7 +144,7 @@ export class PackagesService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.delete<any>(`${this.configuration.basePath}/packages/${encodeURIComponent(String(packageId))}`,
+        return this.httpClient.delete<any>(`${this.configuration.basePath}/group_visits/${encodeURIComponent(String(groupVisitId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
@@ -153,24 +155,18 @@ export class PackagesService {
     }
 
     /**
-     * Get Package
-     * Gets the details of a single instance of a Package
-     * @param packageId 
-     * @param include A list of comma-separated related models to include 
+     * Get a Group Visit (Appointment)
+     * Gets the details of a single instance of a &#x60;GroupVisit&#x60;.
+     * @param groupVisitId 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getPackage(packageId: string, include?: string, observe?: 'body', reportProgress?: boolean): Observable<PackageGuest>;
-    public getPackage(packageId: string, include?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PackageGuest>>;
-    public getPackage(packageId: string, include?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PackageGuest>>;
-    public getPackage(packageId: string, include?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (packageId === null || packageId === undefined) {
-            throw new Error('Required parameter packageId was null or undefined when calling getPackage.');
-        }
-
-        let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (include !== undefined && include !== null) {
-            queryParameters = queryParameters.set('include', <any>include);
+    public getGroupVisit(groupVisitId: string, observe?: 'body', reportProgress?: boolean): Observable<GroupVisitGuest>;
+    public getGroupVisit(groupVisitId: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GroupVisitGuest>>;
+    public getGroupVisit(groupVisitId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GroupVisitGuest>>;
+    public getGroupVisit(groupVisitId: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (groupVisitId === null || groupVisitId === undefined) {
+            throw new Error('Required parameter groupVisitId was null or undefined when calling getGroupVisit.');
         }
 
         let headers = this.defaultHeaders;
@@ -189,9 +185,8 @@ export class PackagesService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<PackageGuest>(`${this.configuration.basePath}/packages/${encodeURIComponent(String(packageId))}`,
+        return this.httpClient.get<GroupVisitGuest>(`${this.configuration.basePath}/group_visits/${encodeURIComponent(String(groupVisitId))}`,
             {
-                params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
                 observe: observe,
@@ -201,40 +196,32 @@ export class PackagesService {
     }
 
     /**
-     * Get packages
-     * Gets a list of [Package] entities.
-     * @param locationIds A comma separated list of Location ids for filtering. i.e. \&#39;1,2,3\&#39; Will return all packages from all locations if none are specified
-     * @param limit Limits the results to a specified number, defaults to 50
-     * @param offset Offsets the results to a specified number, defaults to 0
-     * @param include A list of comma-separated related models to include. Possible values: \&#39;recipient\&#39;, \&#39;location\&#39;, \&#39;image\&#39;
-     * @param pickedUp Filters packages by their \&quot;picked_up\&quot; state..
-     * @param query Searches for packages by recipient name
+     * List all Group Visits (Appointments)
+     * Gets a list of all &#x60;GroupVisit&#x60; entities (Appointments).
+     * @param limit Limits the results to a specified number. Defaults to 50.
+     * @param offset Offsets the results to a specified number. Defaults to 0.
+     * @param locationIds A comma-separated string of locations IDs, to only show group visits (appointments) from those locations.
+     * @param sortWith A combination of attribute and direction, joined with an underscore, for sorting. Valid attributes are: &#x60;created_at&#x60;, &#x60;updated_at&#x60;, &#x60;name&#x60;, and &#x60;start_time&#x60;. Valid directions are &#x60;asc&#x60; and &#x60;desc&#x60;. E.g., &#x60;name_desc&#x60;, &#x60;start_time_asc&#x60;.
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getPackages(locationIds?: string, limit?: number, offset?: number, include?: string, pickedUp?: boolean, query?: string, observe?: 'body', reportProgress?: boolean): Observable<PaginatedPackagesListGuest>;
-    public getPackages(locationIds?: string, limit?: number, offset?: number, include?: string, pickedUp?: boolean, query?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PaginatedPackagesListGuest>>;
-    public getPackages(locationIds?: string, limit?: number, offset?: number, include?: string, pickedUp?: boolean, query?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PaginatedPackagesListGuest>>;
-    public getPackages(locationIds?: string, limit?: number, offset?: number, include?: string, pickedUp?: boolean, query?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getGroupVisits(limit?: string, offset?: string, locationIds?: string, sortWith?: string, observe?: 'body', reportProgress?: boolean): Observable<ErrorsListGuest>;
+    public getGroupVisits(limit?: string, offset?: string, locationIds?: string, sortWith?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ErrorsListGuest>>;
+    public getGroupVisits(limit?: string, offset?: string, locationIds?: string, sortWith?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ErrorsListGuest>>;
+    public getGroupVisits(limit?: string, offset?: string, locationIds?: string, sortWith?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (locationIds !== undefined && locationIds !== null) {
-            queryParameters = queryParameters.set('location_ids', <any>locationIds);
-        }
         if (limit !== undefined && limit !== null) {
             queryParameters = queryParameters.set('limit', <any>limit);
         }
         if (offset !== undefined && offset !== null) {
             queryParameters = queryParameters.set('offset', <any>offset);
         }
-        if (include !== undefined && include !== null) {
-            queryParameters = queryParameters.set('include', <any>include);
+        if (locationIds !== undefined && locationIds !== null) {
+            queryParameters = queryParameters.set('location_ids', <any>locationIds);
         }
-        if (pickedUp !== undefined && pickedUp !== null) {
-            queryParameters = queryParameters.set('picked_up', <any>pickedUp);
-        }
-        if (query !== undefined && query !== null) {
-            queryParameters = queryParameters.set('query', <any>query);
+        if (sortWith !== undefined && sortWith !== null) {
+            queryParameters = queryParameters.set('sort_with', <any>sortWith);
         }
 
         let headers = this.defaultHeaders;
@@ -253,7 +240,7 @@ export class PackagesService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<PaginatedPackagesListGuest>(`${this.configuration.basePath}/packages`,
+        return this.httpClient.get<ErrorsListGuest>(`${this.configuration.basePath}/group_visits`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,
@@ -265,20 +252,20 @@ export class PackagesService {
     }
 
     /**
-     * Update Package
-     * Update/Edit information about a Package.  picked_up - changes the package_state to picked up and assigns non null value to picked_up_at  recipient_id - update the package\&#39;s intended recipient. Changes package_state to \&#39;recipient_matched\&#39; if a match hasn\&#39;t been found and notifies host about their package via email. A previous recipient will stop getting notifications  carrier_name - change/update the package\&#39;s carrier/courier information 
-     * @param packageId 
+     * Update a Group Visit (Appointment)
+     * Updates an existing &#x60;GroupVisit&#x60; (Appointment).
+     * @param groupVisitId 
      * @param idempotencyKey An optional idempotency key to allow for repeat API requests. Any API request with this key will only be executed once, no matter how many times it\&#39;s submitted. We store idempotency keys for only 24 hours. Any &#x60;Idempotency-Key&#x60; shorter than 10 characters will be ignored
-     * @param packageUpdateParamsGuest 
+     * @param groupVisitUpdateParamsGuest 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public updatePackage(packageId: string, idempotencyKey?: string, packageUpdateParamsGuest?: PackageUpdateParamsGuest, observe?: 'body', reportProgress?: boolean): Observable<PackageGuest>;
-    public updatePackage(packageId: string, idempotencyKey?: string, packageUpdateParamsGuest?: PackageUpdateParamsGuest, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PackageGuest>>;
-    public updatePackage(packageId: string, idempotencyKey?: string, packageUpdateParamsGuest?: PackageUpdateParamsGuest, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PackageGuest>>;
-    public updatePackage(packageId: string, idempotencyKey?: string, packageUpdateParamsGuest?: PackageUpdateParamsGuest, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (packageId === null || packageId === undefined) {
-            throw new Error('Required parameter packageId was null or undefined when calling updatePackage.');
+    public updateGroupVisit(groupVisitId: string, idempotencyKey?: string, groupVisitUpdateParamsGuest?: GroupVisitUpdateParamsGuest, observe?: 'body', reportProgress?: boolean): Observable<GroupVisitGuest>;
+    public updateGroupVisit(groupVisitId: string, idempotencyKey?: string, groupVisitUpdateParamsGuest?: GroupVisitUpdateParamsGuest, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<GroupVisitGuest>>;
+    public updateGroupVisit(groupVisitId: string, idempotencyKey?: string, groupVisitUpdateParamsGuest?: GroupVisitUpdateParamsGuest, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<GroupVisitGuest>>;
+    public updateGroupVisit(groupVisitId: string, idempotencyKey?: string, groupVisitUpdateParamsGuest?: GroupVisitUpdateParamsGuest, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (groupVisitId === null || groupVisitId === undefined) {
+            throw new Error('Required parameter groupVisitId was null or undefined when calling updateGroupVisit.');
         }
 
         let headers = this.defaultHeaders;
@@ -305,8 +292,8 @@ export class PackagesService {
             headers = headers.set('Content-Type', httpContentTypeSelected);
         }
 
-        return this.httpClient.put<PackageGuest>(`${this.configuration.basePath}/packages/${encodeURIComponent(String(packageId))}`,
-            packageUpdateParamsGuest,
+        return this.httpClient.put<GroupVisitGuest>(`${this.configuration.basePath}/group_visits/${encodeURIComponent(String(groupVisitId))}`,
+            groupVisitUpdateParamsGuest,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

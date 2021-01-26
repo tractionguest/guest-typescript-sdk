@@ -7,6 +7,7 @@ import { AuditLogsService } from './api/auditLogs.service';
 import { BatchesService } from './api/batches.service';
 import { CapacitiesService } from './api/capacities.service';
 import { EmailTemplatesService } from './api/emailTemplates.service';
+import { GroupVisitsService } from './api/groupVisits.service';
 import { HostsService } from './api/hosts.service';
 import { InvitesService } from './api/invites.service';
 import { LocationsService } from './api/locations.service';
@@ -25,6 +26,7 @@ import { WatchlistsService } from './api/watchlists.service';
     BatchesService,
     CapacitiesService,
     EmailTemplatesService,
+    GroupVisitsService,
     HostsService,
     InvitesService,
     LocationsService,

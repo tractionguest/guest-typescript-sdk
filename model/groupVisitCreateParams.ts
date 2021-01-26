@@ -11,45 +11,14 @@
  */
 
 
-/**
- * 
- */
-export interface DocusignGuest { 
-    /**
-     * 
-     */
-    templateId?: string;
-    /**
-     * 
-     */
-    integration?: string;
-    /**
-     * 
-     */
-    ndaStatus?: string;
-    /**
-     * 
-     */
-    ndaSignedDate?: Date;
-    /**
-     * 
-     */
-    envelopeId?: string;
-    /**
-     * 
-     */
-    sequence?: string;
-    /**
-     * 
-     */
-    docusignId?: string;
-    /**
-     * 
-     */
-    docusignName?: string;
-    /**
-     * 
-     */
-    title?: string;
+export interface GroupVisitCreateParamsGuest { 
+    name: string;
+    startTime: string;
+    endTime: string;
+    locationId: number;
+    registrationLimit?: number | null;
+    manualRegistrationApproval?: boolean | null;
+    publicRegistrationEnabled?: boolean | null;
+    hostIds?: Array<number>;
 }
 
