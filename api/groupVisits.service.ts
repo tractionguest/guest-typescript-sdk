@@ -22,6 +22,7 @@ import { ErrorsListGuest } from '../model/errorsList';
 import { GroupVisitCreateParamsGuest } from '../model/groupVisitCreateParams';
 import { GroupVisitGuest } from '../model/groupVisit';
 import { GroupVisitUpdateParamsGuest } from '../model/groupVisitUpdateParams';
+import { PaginatedGroupVisitsListGuest } from '../model/paginatedGroupVisitsList';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
 import { Configuration }                                     from '../configuration';
@@ -205,9 +206,9 @@ export class GroupVisitsService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getGroupVisits(limit?: string, offset?: string, locationIds?: string, sortWith?: string, observe?: 'body', reportProgress?: boolean): Observable<ErrorsListGuest>;
-    public getGroupVisits(limit?: string, offset?: string, locationIds?: string, sortWith?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<ErrorsListGuest>>;
-    public getGroupVisits(limit?: string, offset?: string, locationIds?: string, sortWith?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<ErrorsListGuest>>;
+    public getGroupVisits(limit?: string, offset?: string, locationIds?: string, sortWith?: string, observe?: 'body', reportProgress?: boolean): Observable<PaginatedGroupVisitsListGuest>;
+    public getGroupVisits(limit?: string, offset?: string, locationIds?: string, sortWith?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PaginatedGroupVisitsListGuest>>;
+    public getGroupVisits(limit?: string, offset?: string, locationIds?: string, sortWith?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PaginatedGroupVisitsListGuest>>;
     public getGroupVisits(limit?: string, offset?: string, locationIds?: string, sortWith?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
@@ -240,7 +241,7 @@ export class GroupVisitsService {
         const consumes: string[] = [
         ];
 
-        return this.httpClient.get<ErrorsListGuest>(`${this.configuration.basePath}/group_visits`,
+        return this.httpClient.get<PaginatedGroupVisitsListGuest>(`${this.configuration.basePath}/group_visits`,
             {
                 params: queryParameters,
                 withCredentials: this.configuration.withCredentials,

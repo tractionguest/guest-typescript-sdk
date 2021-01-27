@@ -33,6 +33,7 @@ export * from './package';
 export * from './packageUpdateParams';
 export * from './paginatedAuditLogsList';
 export * from './paginatedEmailTemplatesList';
+export * from './paginatedGroupVisitsList';
 export * from './paginatedHostsList';
 export * from './paginatedInvitesList';
 export * from './paginatedLocationsList';
