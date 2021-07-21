@@ -12,7 +12,7 @@
 
 
 /**
- * Parameters required for updating or creating watchlist records
+ * Parameters required for updating or creating watchlist records 
  */
 export interface WatchlistCreateParamsGuest { 
     aliases?: Array<string>;
@@ -21,6 +21,10 @@ export interface WatchlistCreateParamsGuest {
     firstName?: string;
     email?: string;
     colour?: WatchlistCreateParamsGuest.ColourGuestEnum;
+    /**
+     * A base64 encoded image. base64_image should be strict encoded 
+     */
+    base64Image?: string;
 }
 export namespace WatchlistCreateParamsGuest {
     export type ColourGuestEnum = 'RED' | 'YELLOW' | 'GREEN' | 'ORANGE';
