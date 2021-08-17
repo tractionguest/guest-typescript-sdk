@@ -25,6 +25,7 @@ export interface WatchlistCreateParamsGuest {
      * A base64 encoded image. base64_image should be strict encoded 
      */
     base64Image?: string;
+    driverLicense?: string;
 }
 export namespace WatchlistCreateParamsGuest {
     export type ColourGuestEnum = 'RED' | 'YELLOW' | 'GREEN' | 'ORANGE';

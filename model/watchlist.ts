@@ -23,6 +23,7 @@ export interface WatchlistGuest {
     firstName?: string;
     email?: string;
     colour?: WatchlistGuest.ColourGuestEnum;
+    driverLicense?: string;
 }
 export namespace WatchlistGuest {
     export type ColourGuestEnum = 'RED' | 'YELLOW' | 'GREEN' | 'ORANGE';
