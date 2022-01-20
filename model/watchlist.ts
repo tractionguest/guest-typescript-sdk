@@ -24,6 +24,8 @@ export interface WatchlistGuest {
     email?: string;
     colour?: WatchlistGuest.ColourGuestEnum;
     driverLicense?: string;
+    createdAt?: Date;
+    updatedAt?: Date;
 }
 export namespace WatchlistGuest {
     export type ColourGuestEnum = 'RED' | 'YELLOW' | 'GREEN' | 'ORANGE';
