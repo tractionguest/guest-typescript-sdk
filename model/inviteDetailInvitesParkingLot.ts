@@ -9,10 +9,14 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { HostCreateParamsGuest } from './hostCreateParams';
 
 
-export interface HostBatchCreateParamsGuest { 
-    hosts?: Array<HostCreateParamsGuest>;
+export interface InviteDetailInvitesParkingLotGuest { 
+    id?: number;
+    stallNumber?: number;
+    stallType?: string;
+    parkingLotName?: string;
+    parkingLotId?: number;
+    parkingStallId?: number;
 }
 
