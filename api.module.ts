@@ -12,6 +12,7 @@ import { HostsService } from './api/hosts.service';
 import { InvitesService } from './api/invites.service';
 import { LocationsService } from './api/locations.service';
 import { PackagesService } from './api/packages.service';
+import { ParkingService } from './api/parking.service';
 import { RegistrationsService } from './api/registrations.service';
 import { SigninsService } from './api/signins.service';
 import { UsersService } from './api/users.service';
@@ -31,6 +32,7 @@ import { WatchlistsService } from './api/watchlists.service';
     InvitesService,
     LocationsService,
     PackagesService,
+    ParkingService,
     RegistrationsService,
     SigninsService,
     UsersService,
